@@ -1,7 +1,7 @@
-resource "aws_instance" "name" {
-    ami = "ami-0f559c3642608c138"
-    tnstance_type ="t2 microw"
-
-tag =
-Name =dev-instance
+resource "aws_instance" "dev_instance" {
+    ami = var.ami_id
+    instance_type = var.instance_type
+    tags = { 
+      Name = "dev_instance"
+    } 
 }
