@@ -1,9 +1,9 @@
-resource "aws_instance" "dev" {
-    ami = var.dev_ami_id
+resource "aws_instance" "uat" {
+    ami = var.uat_ami_id
     instance_type = var.dev_instance_type
     provider = aws.devenv
     tags = {
-        Name = "dev-instance"
+        Name = "uat-instance"
     }
 }
 resource "aws_instance" "test" {
