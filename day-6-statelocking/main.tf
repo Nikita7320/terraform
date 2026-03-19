@@ -14,3 +14,10 @@ resource "aws_subnet" "name" {
     }
   
 }
+resource "aws_subnet" "nikita" {
+    vpc_id = aws_vpc.name.id
+    cidr_block = "10.0.1.0/24"
+    tags = {
+        Name = "prod2-subnet"
+    }
+}

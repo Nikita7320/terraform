@@ -58,7 +58,7 @@ resource "aws_db_instance" "main" {
   backup_window      = "18:00-19:00"
 maintenance_window = "Sun:19:00-Sun:20:00"
 
-  deletion_protection = true
+  deletion_protection = false
   skip_final_snapshot = true
 
   depends_on = [aws_db_subnet_group.my_sg]
