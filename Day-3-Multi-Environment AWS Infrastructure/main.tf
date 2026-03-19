@@ -11,6 +11,6 @@ resource "aws_instance" "test" {
     instance_type = var.test_instance_type
     provider = aws.testenv
     tags = {
-        Name = "test-instance"
+        Name = "dev-instance"
     }
 }
