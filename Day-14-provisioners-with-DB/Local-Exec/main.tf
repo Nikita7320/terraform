@@ -22,10 +22,10 @@ resource "null_resource" "local_sql_exec" {
   triggers = {
     always_run = timestamp()
   }
-
-  provisioner "local-exec" {
-    interpreter = ["C:/Program Files/Git/bin/bash.exe", "-c"]
-
-    command = "\"/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe\" -h ${aws_db_instance.mysql_rds.address} -u admin -pPassword123! dev < init.sql"
-  }
+provisioner "local-exec" {
+  command = "mysql -h ${aws_db_instance.mysql_rds.address} -u admin -pPassword123! dev < init.sql"
 }
+ 
+}
+
+  
