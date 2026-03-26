@@ -1,0 +1,31 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+
+# Create the RDS instance
+resource "aws_db_instance" "mysql_rds" {
+  identifier              = "my-mysql-db"
+  engine                  = "mysql"
+  instance_class          = "db.t3.micro"
+  username                = "admin"
+  password                = "Password123!"
+  db_name                 = "dev"
+  allocated_storage       = 20
+  skip_final_snapshot     = true
+  publicly_accessible     = true
+}
+
+# Use null_resource to execute the SQL script from your local machine
+resource "null_resource" "local_sql_exec" {
+
+  triggers = {
+    always_run = timestamp()
+  }
+
+  provisioner "local-exec" {
+    interpreter = ["C:/Program Files/Git/bin/bash.exe", "-c"]
+
+    command = "\"/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe\" -h ${aws_db_instance.mysql_rds.address} -u admin -pPassword123! dev < init.sql"
+  }
+}
